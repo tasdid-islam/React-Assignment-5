@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Technology = {
   id: string;
@@ -37,11 +39,13 @@ function Technologies() {
     );
 
     if (alreadyAdded) {
-      alert(`${technology.name} is already in your stack!`);
+    toast.warning(`${technology.name} is already in your stack!`);
       return;
+        
     }
 
     setSelectedStack([...selectedStack, technology]);
+    toast.success(`${technology.name} added to your stack!`);
   };
 
   
@@ -51,11 +55,14 @@ function Technologies() {
     );
 
     setSelectedStack(updatedStack);
+     toast.info("Technology removed from your stack!");
+
   };
 
 
   const handleRemoveAll = () => {
     setSelectedStack([]);
+    toast.error("All technologies removed from your stack!");
   };
 
   
@@ -70,6 +77,7 @@ function Technologies() {
   }
 
   return (
+    <>
     <section className="px-6 py-16 md:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
 
@@ -239,6 +247,13 @@ function Technologies() {
         </div>
       </div>
     </section>
+
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+       />
+     </>
   );
 }
 
