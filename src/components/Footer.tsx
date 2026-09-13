@@ -1,3 +1,9 @@
+
+
+
+
+
+
 import logo from "../assets/logo-text.png";
 
 function Footer() {

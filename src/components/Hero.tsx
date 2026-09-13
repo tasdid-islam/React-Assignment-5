@@ -1,3 +1,7 @@
+
+
+
+
 import heroImage from "../assets/banner-stack.png";
 
 function Hero() {
