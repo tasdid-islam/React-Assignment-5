@@ -13,6 +13,27 @@ type Technology = {
   badge: string;
 };
 
+
+const brandColors: Record<string, { text: string; bg: string }> = {
+  React: { text: "#00D8FF", bg: "rgba(0, 216, 255, 0.12)" },
+  "Node.js": { text: "#339933", bg: "rgba(51, 153, 51, 0.12)" },
+  JavaScript: { text: "#EAB308", bg: "rgba(234, 179, 8, 0.15)" }, 
+  TypeScript: { text: "#3178C6", bg: "rgba(49, 120, 198, 0.12)" },
+  Python: { text: "#3776AB", bg: "rgba(55, 118, 171, 0.12)" },
+  Java: { text: "#E76F00", bg: "rgba(231, 111, 0, 0.12)" },
+  MongoDB: { text: "#47A248", bg: "rgba(71, 162, 72, 0.12)" },
+  PostgreSQL: { text: "#4169E1", bg: "rgba(65, 105, 225, 0.12)" },
+  MySQL: { text: "#00758F", bg: "rgba(0, 117, 143, 0.12)" },
+  Tailwind: { text: "#06B6D4", bg: "rgba(6, 182, 212, 0.12)" },
+  Vue: { text: "#42B883", bg: "rgba(66, 184, 131, 0.15)" },       
+  "Vue.js": { text: "#42B883", bg: "rgba(66, 184, 131, 0.15)" },   
+  Angular: { text: "#DD0031", bg: "rgba(221, 0, 49, 0.12)" },
+  Docker: { text: "#2496ED", bg: "rgba(36, 150, 237, 0.12)" },
+};
+
+
+const defaultBrandColor = { text: "#4B5563", bg: "#F3F4F6" };
+
 function Technologies() {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,6 +108,10 @@ function Technologies() {
                   (item) => item.id === technology.id
                 );
 
+                
+                const badgeStyle =
+                  brandColors[technology.name] || defaultBrandColor;
+
                 return (
                   <div
                     key={technology.id}
@@ -100,7 +125,14 @@ function Technologies() {
                           className="h-12 w-12 transition-transform duration-300 hover:scale-110"
                         />
 
-                        <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600">
+                       
+                        <span
+                          className="rounded-full px-3 py-1 text-xs font-bold transition-all"
+                          style={{
+                            color: badgeStyle.text,
+                            backgroundColor: badgeStyle.bg,
+                          }}
+                        >
                           {technology.badge}
                         </span>
                       </div>
@@ -157,7 +189,9 @@ function Technologies() {
 
               {selectedStack.length === 0 ? (
                 <div className="py-10 text-center">
-                  <p className="font-medium text-gray-500">Your stack is empty.</p>
+                  <p className="font-medium text-gray-500">
+                    Your stack is empty.
+                  </p>
                   <p className="mt-2 text-sm text-gray-400">
                     Add technologies to build your ideal stack.
                   </p>
