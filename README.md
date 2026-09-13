@@ -1,32 +1,40 @@
-# React + TypeScript + Vite
+ Dev Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+একটি ইন্টারেক্টিভ ওয়েব অ্যাপ্লিকেশন, যার মাধ্যমে যেকোনো প্রজেক্টের জন্য নিজের পছন্দমতো টেকনোলজি সিলেক্ট করে স্ট্যাক তৈরি করা যায়।
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+ ফিচারসমূহ
+- টেকনোলজি বেছে নিয়ে স্ট্যাকে যোগ করার সুবিধা।
+- ডুপ্লিকেট আইটেম না হওয়া এবং এক ক্লিকে রিমুভ করার অপশন।
+- টোস্ট নোটিফিকেশন সতর্কবার্তা।
+- সম্পূর্ণ রেসপন্সিভ ডিজাইন ও সেন্ট্রাল থিম কনফিগারেশন।
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the Oxlint configuration
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+ ১. JSX কী এবং কেন ব্যবহার করা হয়?
+উত্তর: JSX হলো JavaScript-এর ভেতরে HTML লেখার সহজ উপায়। আলাদা করে HTML ফাইল না বানিয়ে জাভাস্ক্রিপ্ট ফাইলের ভেতরেই সহজে UI ডিজাইন করার জন্য এটি ব্যবহার করা হয়।
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+২. Props এবং State-এর মধ্যে পার্থক্য কী?
+উত্তর:
+- Props: ওপরের (Parent) কম্পোনেন্ট থেকে নিচের (Child) কম্পোনেন্টে পাঠানো ডেটা, যা বদলানো যায় না।
+- State: কম্পোনেন্টের নিজের ভেতরের পরিবর্তনশীল ডেটা, যা বদলালে স্ক্রিন বা UI আপডেট হয়।
+
+৩. `useState` কী কাজ করে এবং কোথায় ব্যবহার করেছেন?
+উত্তর: `useState` অ্যাপের যেকোনো ডেটা ধরে রাখে এবং ডেটা পাল্টালে স্ক্রিন আপডেট করে। আমি আমার প্রজেক্টে সিলেক্ট করা কার্ডের লিস্ট এবং লোডিং স্টেট ধরে রাখতে এটি ব্যবহার করেছি।
+
+ ৪. `useEffect` কী কাজ করে এবং এটি কেন লেগেছে?
+উত্তর: অ্যাপ চালু হওয়ার সাথে সাথে বাইরের কোনো কাজ (যেমন: JSON থেকে ডেটা লোড করা) স্বয়ংক্রিয়ভাবে করার জন্য `useEffect` ব্যবহার করা হয়। JSON ফাইল থেকে টেকনোলজি লিস্ট ফেচ করার জন্য আমি এটি ব্যবহার করেছি।
+
+৫. `.map()` চালানোর সময় `key` দেওয়া কেন জরুরি?
+উত্তর: রিয়্যাক্ট যেন বুঝতে পারে কোন আইটেমটা চেঞ্জ বা রিমুভ হয়েছে। `key` দিলে রিয়্যাক্ট পুরো পেজ রিফ্রেশ না করে শুধু ওই একটা আইটেমকে দ্রুত আপডেট করতে পারে।
+
+৬. কন্ডিশনাল রেন্ডারিং (Conditional Rendering) কী?
+উত্তর: শর্তের ওপর ভিত্তি করে স্ক্রিনে লেখা বা ডিজাইন দেখানো। যেমন—আমার প্রজেক্টে কার্ড সিলেক্ট করা না থাকলে "Your stack is empty" দেখায়, আর সিলেক্ট করলে কার্ডের লিস্ট দেখায়।
+
+ ৭. প্যারেন্ট ও চাইল্ড কম্পোনেন্টে ডেটা লেনদেন কীভাবে হয়?
+উত্তর:
+- প্যারেন্ট থেকে চাইল্ডে: `props` দিয়ে ডেটা নিচে পাঠানো হয়।
+- চাইল্ড থেকে প্যারেন্টে: প্যারেন্ট একটা ফাংশন পাঠিয়ে দেয়, চাইল্ড সেই ফাংশনটি ডেকে ডেটা ওপরে ফেরত পাঠায়।
